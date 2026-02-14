@@ -542,7 +542,7 @@ class Delete(Module):
         index_real_cps_edge_i_list, index_real_cps_edge_j_list = [], []  # index of real-ctx edge (for attention)
         for node in torch.arange(pos_query.size(0)):
             num_edges = (row == node).sum()
-            index_edge_i = torch.arange(num_edges, dtype=torch.long, ).to('cuda') + acc_num_edges
+            index_edge_i = torch.arange(num_edges, dtype=torch.long, ).to(pos_query.device) + acc_num_edges
             index_edge_i, index_edge_j = torch.meshgrid(index_edge_i, index_edge_i, indexing=None)
             index_edge_i, index_edge_j = index_edge_i.flatten(), index_edge_j.flatten()
             index_real_cps_edge_i_list.append(index_edge_i)
@@ -554,10 +554,10 @@ class Delete(Module):
         node_a_cps_tri_edge = col[index_real_cps_edge_i]  # the node of tirangle edge for the edge attention (in the compose)
         node_b_cps_tri_edge = col[index_real_cps_edge_j]
         n_context = len(idx_ligand)
-        adj_mat = (torch.zeros([n_context, n_context], dtype=torch.long) - torch.eye(n_context, dtype=torch.long)).to('cuda')
+        adj_mat = (torch.zeros([n_context, n_context], dtype=torch.long) - torch.eye(n_context, dtype=torch.long)).to(pos_query.device)
         adj_mat[ligand_bond_index[0], ligand_bond_index[1]] = ligand_bond_type
         tri_edge_type = adj_mat[node_a_cps_tri_edge, node_b_cps_tri_edge]
-        tri_edge_feat = (tri_edge_type.view([-1, 1]) == torch.tensor([[-1, 0, 1, 2, 3]]).to('cuda')).long()
+        tri_edge_feat = (tri_edge_type.view([-1, 1]) == torch.tensor([[-1, 0, 1, 2, 3]]).to(pos_query.device)).long()
 
         index_real_cps_edge_for_atten = torch.stack([
             index_real_cps_edge_i, index_real_cps_edge_j  # plus len(real_compose_edge_index_0) for dataloader batch

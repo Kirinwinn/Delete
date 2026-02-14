@@ -25,12 +25,12 @@ from save_ply import save_ply
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    '--pdb_file', action='store',required=False,type=str,default='./3cl.pdb',
+    '--pdb_file', action='store',required=False,type=str,default='./workdir/STL36/4F.pdb',
     help='protein file'
 )
 
 parser.add_argument(
-    '--lig_file', action='store',required=False,type=str,default='./3cl_ligand.sdf',
+    '--lig_file', action='store',required=False,type=str,default='./workdir/STL36/STL36_Coor.sdf',
     help='protein file'
 )
 
@@ -42,14 +42,13 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-#os.environ["LD_LIBRARY_PATH"] = '/home/haotian/Molecule_Generation/APBS-3.0.0.Linux/lib:/home/haotian/software/miniconda3/envs/deepdock/lib'
-msms_bin="/home/haotian/Molecule_Generation/SurfBP/dataset/install_software/APBS-3.0.0.Linux/bin/msms"
-apbs_bin = '/home/haotian/Molecule_Generation/SurfBP/dataset/install_software/APBS-3.0.0.Linux/bin/apbs'
-pdb2pqr_bin="/home/haotian/Molecule_Generation/SurfBP/dataset/install_software/pdb2pqr-linux-bin64-2.1.1/pdb2pqr"
-multivalue_bin="/home/haotian/Molecule_Generation/SurfBP/dataset/install_software/APBS-3.0.0.Linux/share/apbs/tools/bin/multivalue"
-
-prot_path = './1z6e_protein.pdb'
-lig_path = './1z6e_ligand.mol2'
+os.environ["LD_LIBRARY_PATH"] = '/home/cenking/VsCode/Delete/Delete_Running/install_software/APBS-3.0.0.Linux/lib:/home/cenking/anaconda3/envs/Delete_Supporting/lib'
+msms_bin="/home/cenking/VsCode/Delete/Delete_Running/install_software/APBS-3.0.0.Linux/bin/msms"
+apbs_bin = '/home/cenking/VsCode/Delete/Delete_Running/install_software/APBS-3.0.0.Linux/bin/apbs'
+pdb2pqr_bin="/home/cenking/VsCode/Delete/Delete_Running/install_software/pdb2pqr-linux-bin64-2.1.1/pdb2pqr"
+multivalue_bin="/home/cenking/VsCode/Delete/Delete_Running/install_software/APBS-3.0.0.Linux/share/apbs/tools/bin/multivalue"
+prot_path = './agent_temp/7WMM_clean.pdb'
+lig_path = './agent_temp/7WMM_virtual_ligand.sdf'
 outdir='.'
 dist_threshold=8.0
 use_hbond=True

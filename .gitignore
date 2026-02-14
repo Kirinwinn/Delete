@@ -3,3 +3,4 @@ logs/
 *.lmdb
 *.lmdb-lock
 *.pt
+*.syc

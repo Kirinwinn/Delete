@@ -296,7 +296,8 @@ def parse_sdf_file(path):
 
 def parse_rdmol(rdmol):
     Chem.Kekulize(rdmol)
-    fdefName = os.path.join(RDConfig.RDDataDir,'BaseFeatures.fdef')
+    #fdefName = os.path.join(RDConfig.RDDataDir,'BaseFeatures.fdef')\
+    fdefName = '/home/cenking/anaconda3/envs/Delete/share/RDKit/Data/BaseFeatures.fdef'
     factory = ChemicalFeatures.BuildFeatureFactory(fdefName)
     num_atoms = rdmol.GetNumAtoms()
     num_bonds = rdmol.GetNumBonds()
