@@ -1,12 +1,12 @@
 sample:
   seed: 2023
   mask_init: True
-  num_samples: 100
+  num_samples: 100000
   beam_size: 500
-  max_steps: 50
+  max_steps: 60
   threshold:
-    focal_threshold: 0.5
-    pos_threshold: 0.25
-    element_threshold: 0.3
-    hasatom_threshold: 0.6
-    bond_threshold: 0.4
+    focal_threshold: 0.7
+    pos_threshold: 0.3
+    element_threshold: 0.6
+    hasatom_threshold: 0.3
+    bond_threshold: 0.3

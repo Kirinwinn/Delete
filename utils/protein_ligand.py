@@ -297,11 +297,11 @@ def parse_sdf_file(path):
 def parse_rdmol(rdmol):
     Chem.Kekulize(rdmol)
     #fdefName = os.path.join(RDConfig.RDDataDir,'BaseFeatures.fdef')\
-    fdefName = '/home/cenking/anaconda3/envs/Delete/share/RDKit/Data/BaseFeatures.fdef'
+    fdefName = os.path.join(RDConfig.RDDataDir, 'BaseFeatures.fdef')
     factory = ChemicalFeatures.BuildFeatureFactory(fdefName)
     num_atoms = rdmol.GetNumAtoms()
     num_bonds = rdmol.GetNumBonds()
-    feat_mat = np.zeros([num_atoms, len(ATOM_FAMILIES)], dtype=np.compat.long)
+    feat_mat = np.zeros([num_atoms, len(ATOM_FAMILIES)], dtype=np.int64)
     for feat in factory.GetFeaturesForMol(rdmol):
         feat_mat[feat.GetAtomIds(), ATOM_FAMILIES_ID[feat.GetFamily()]] = 1
 
@@ -343,8 +343,8 @@ def parse_rdmol(rdmol):
         col += [v,u]
         edge_type += 2*[BOND_TYPES[bond.GetBondType()]]
 
-    edge_index = np.array([row, col], dtype=np.compat.long)
-    edge_type = np.array(edge_type, dtype=np.compat.long)
+    edge_index = np.array([row, col], dtype=np.int64)
+    edge_type = np.array(edge_type, dtype=np.int64)
 
     perm = (edge_index[0] * num_atoms + edge_index[1]).argsort()
     edge_index = edge_index[:, perm]

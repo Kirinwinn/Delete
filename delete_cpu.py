@@ -127,7 +127,7 @@ if __name__ == '__main__':
     # load configs, utils 
     config = load_config(args.config)
     args.device = 'cpu'
-    ckpt = torch.load(args.check_point, map_location=args.device, weights_only=False)
+    ckpt = torch.load(args.check_point, map_location=args.device)
     config_train = ckpt['config']
     protein_featurizer = FeaturizeProteinAtom()
     ligand_featurizer = FeaturizeLigandAtom()
